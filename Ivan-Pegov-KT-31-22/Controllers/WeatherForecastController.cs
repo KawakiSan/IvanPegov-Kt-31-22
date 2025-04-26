@@ -21,6 +21,7 @@ public class WeatherForecastController : ControllerBase
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
+        _logger.LogError("Method was called");
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
             Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
@@ -29,4 +30,15 @@ public class WeatherForecastController : ControllerBase
         })
         .ToArray();
     }
+
+    [HttpPost(Name = "AddNewSummary")]
+    public string[] AddNewSummary(string newSummary)
+    {
+        _logger.LogError("Method was called");
+
+        var list = Summaries.ToList();
+        list.Add(newSummary);
+        return list.ToArray();
+    }
+
 }
