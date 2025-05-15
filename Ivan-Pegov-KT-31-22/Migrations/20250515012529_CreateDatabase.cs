@@ -13,6 +13,21 @@ namespace Ivan_Pegov_KT_31_22.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Disciplines",
+                columns: table => new
+                {
+                    DisciplineId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    LoadHours = table.Column<int>(type: "integer", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Disciplines", x => x.DisciplineId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Departments",
                 columns: table => new
                 {
@@ -51,10 +66,39 @@ namespace Ivan_Pegov_KT_31_22.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TeacherDisciplines",
+                columns: table => new
+                {
+                    TeacherId = table.Column<int>(type: "integer", nullable: false),
+                    DisciplineId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TeacherDisciplines", x => new { x.TeacherId, x.DisciplineId });
+                    table.ForeignKey(
+                        name: "FK_TeacherDisciplines_Disciplines_DisciplineId",
+                        column: x => x.DisciplineId,
+                        principalTable: "Disciplines",
+                        principalColumn: "DisciplineId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TeacherDisciplines_Teachers_TeacherId",
+                        column: x => x.TeacherId,
+                        principalTable: "Teachers",
+                        principalColumn: "teacher_id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Departments_head_id",
                 table: "Departments",
                 column: "head_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TeacherDisciplines_DisciplineId",
+                table: "TeacherDisciplines",
+                column: "DisciplineId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Teachers_department_id",
@@ -76,6 +120,12 @@ namespace Ivan_Pegov_KT_31_22.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_Departments_Teachers_head_id",
                 table: "Departments");
+
+            migrationBuilder.DropTable(
+                name: "TeacherDisciplines");
+
+            migrationBuilder.DropTable(
+                name: "Disciplines");
 
             migrationBuilder.DropTable(
                 name: "Teachers");

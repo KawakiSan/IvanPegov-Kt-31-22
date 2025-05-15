@@ -56,6 +56,32 @@ namespace Ivan_Pegov_KT_31_22.Migrations
                     b.ToTable("Departments");
                 });
 
+            modelBuilder.Entity("Ivan_Pegov_KT_31_22.Models.Discipline", b =>
+                {
+                    b.Property<int>("DisciplineId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("DisciplineId"));
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("LoadHours")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.HasKey("DisciplineId");
+
+                    b.ToTable("Disciplines");
+                });
+
             modelBuilder.Entity("Ivan_Pegov_KT_31_22.Models.Teacher", b =>
                 {
                     b.Property<int>("TeacherId")
@@ -98,6 +124,21 @@ namespace Ivan_Pegov_KT_31_22.Migrations
                     b.ToTable("Teachers");
                 });
 
+            modelBuilder.Entity("Ivan_Pegov_KT_31_22.Models.TeacherDiscipline", b =>
+                {
+                    b.Property<int>("TeacherId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("DisciplineId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("TeacherId", "DisciplineId");
+
+                    b.HasIndex("DisciplineId");
+
+                    b.ToTable("TeacherDisciplines");
+                });
+
             modelBuilder.Entity("Ivan_Pegov_KT_31_22.Models.Department", b =>
                 {
                     b.HasOne("Ivan_Pegov_KT_31_22.Models.Teacher", "Head")
@@ -119,9 +160,38 @@ namespace Ivan_Pegov_KT_31_22.Migrations
                     b.Navigation("Department");
                 });
 
+            modelBuilder.Entity("Ivan_Pegov_KT_31_22.Models.TeacherDiscipline", b =>
+                {
+                    b.HasOne("Ivan_Pegov_KT_31_22.Models.Discipline", "Discipline")
+                        .WithMany("TeacherDisciplines")
+                        .HasForeignKey("DisciplineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ivan_Pegov_KT_31_22.Models.Teacher", "Teacher")
+                        .WithMany("TeacherDisciplines")
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Discipline");
+
+                    b.Navigation("Teacher");
+                });
+
             modelBuilder.Entity("Ivan_Pegov_KT_31_22.Models.Department", b =>
                 {
                     b.Navigation("Teachers");
+                });
+
+            modelBuilder.Entity("Ivan_Pegov_KT_31_22.Models.Discipline", b =>
+                {
+                    b.Navigation("TeacherDisciplines");
+                });
+
+            modelBuilder.Entity("Ivan_Pegov_KT_31_22.Models.Teacher", b =>
+                {
+                    b.Navigation("TeacherDisciplines");
                 });
 #pragma warning restore 612, 618
         }
