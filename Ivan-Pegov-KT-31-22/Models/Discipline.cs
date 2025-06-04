@@ -2,10 +2,10 @@
 {
     public class Discipline
     {
-        public int DisciplineId { get; set; } // Первичный ключ
-        public string Name { get; set; } = string.Empty; // Название дисциплины
-        public int LoadHours { get; set; } // Нагрузка часов за семестр
-        public bool IsDeleted { get; set; } = false; // Флаг мягкого удаления
+        public int DisciplineId { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public int LoadHours { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public virtual ICollection<TeacherDiscipline> TeacherDisciplines { get; set; } = new List<TeacherDiscipline>();
     }

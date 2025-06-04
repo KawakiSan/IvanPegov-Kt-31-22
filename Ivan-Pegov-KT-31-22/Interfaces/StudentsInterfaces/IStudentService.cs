@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ivan_Pegov_KT_31_22.Interfaces.StudentInterfaces
 {
+
     public interface IStudentService
     {
         Task<Teacher[]> GetStudentsByGroupAsync(StudentGroupFilter filter, CancellationToken cancellationToken);
@@ -31,6 +32,7 @@ namespace Ivan_Pegov_KT_31_22.Interfaces.StudentInterfaces
     {
         Task<Discipline[]> GetDisciplinesFilteredAsync(DisciplineFilter filter, CancellationToken cancellationToken = default);
     }
+
 
     public class DisciplineService : IDisciplineService
     {

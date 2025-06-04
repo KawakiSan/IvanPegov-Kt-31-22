@@ -5,6 +5,8 @@ VisualStudioVersion = 17.13.35828.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ivan-Pegov-KT-31-22", "Ivan-Pegov-KT-31-22\Ivan-Pegov-KT-31-22.csproj", "{A658091E-E5C9-4A67-8211-9FFF158DFED4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject1\TestProject1.csproj", "{8D3E7F3E-1041-42A7-9C9F-DC5583BB358E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A658091E-E5C9-4A67-8211-9FFF158DFED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A658091E-E5C9-4A67-8211-9FFF158DFED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A658091E-E5C9-4A67-8211-9FFF158DFED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D3E7F3E-1041-42A7-9C9F-DC5583BB358E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D3E7F3E-1041-42A7-9C9F-DC5583BB358E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D3E7F3E-1041-42A7-9C9F-DC5583BB358E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D3E7F3E-1041-42A7-9C9F-DC5583BB358E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
